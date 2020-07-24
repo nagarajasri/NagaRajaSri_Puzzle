@@ -1,0 +1,147 @@
+def above(a, b, n):
+    a[n],b[n] = b[n], a[n]
+    return (a, b)
+def below(a, b, n):
+    a[n], b[n] =b[n], a[n]
+    return (a,b)
+def right(a, n):
+    a[n], a[n+1] = a[n+1], a[n]
+    return a
+def left(a, n):
+    a[n], a[n-1] = a[n-1], a[n]
+    return a
+s1 = input()
+count = 0 
+while s1 != 'Z':
+    l1=list(s1)
+    l2=list(input())
+    l3=list(input())
+    l4=list(input())
+    l5=list(input())
+    l=list(input())
+    i,j = 0,0
+    count = count + 1
+    print("Puzzle#", count, ":")
+    while i <= 4:
+        if l1[i] == ' ':
+            if l[j] == 'A':
+                print("This puzzle has no final configuration")
+                break
+            elif l[j] == 'B':
+                l1, l2 = below(l1, l2, i)
+            elif l[j] == 'R':
+                if i == 4:
+                    print("This puzzle has no final configuration")
+                    break
+                else:
+                    l1 = right(l1, i)
+                    i += 1
+            elif l[j] == 'L':
+                if i == 0:
+                    print("This puzzle has no final configuration")
+                    break
+                else:
+                    l1 = left(l1, i)
+                    i -= 1
+            elif l[j] == 'O':
+                break
+            j=j+1
+        elif l2[i] == ' ':
+            if l[j] == 'A':
+                l1, l2 = above(l1, l2, i)
+            elif l[j] == 'B':
+                l2, l3 = below(l2, l3, i)
+            elif l[j] == 'R':
+                if i == 4:
+                    print("This puzzle has no final configuration")
+                    break
+                else:
+                    l2 = right(l2, i)
+                    i += 1
+            elif l[j] == 'L':
+                if j == 0:
+                    print("This puzzle has no final configuration")
+                    break
+                else:
+                    l2 = left(l2, i)
+                    i -= 1
+            elif l[j] == 'O':
+                break
+            j=j+1
+        elif l3[i] == ' ':
+            if l[j] == 'A':
+                l2, l3 = above(l2, l3, i)
+            elif l[j] == 'B':
+                l3, l4 = below(l3, l4, i)
+            elif l[j] == 'R':
+                if i == 4:
+                    print("This puzzle has no final configuration")
+                    break
+                else:
+                    l3 = right(l3, i)
+                    i += 1
+            elif l[j] == 'L':
+                if j == 0:
+                    print("This puzzle has no final configuration")
+                    break
+                else:
+                    l3 = left(l3, n)
+                    i -= 1
+            elif l[j] == 'O':
+                break
+            j=j+1
+        elif l4[i] == ' ':
+            if l[j] == 'A':
+                l3, l4 = above(l3, l4, i)
+            elif l[j] == 'B':
+                l4, l5 = below(l4, l5, i)
+            elif l[j] == 'R':
+                if i == 4:
+                    print("This puzzle has no final configuration")
+                    break
+                else:
+                    l4 = right(l4, i)
+                    i += 1
+            elif l[j] == 'L':
+                if j == 0:
+                    print("This puzzle has no final configuration")
+                    break
+                else:
+                    l4 = left(l4,i)
+                    i -= 1
+            elif l[j] == 'O':
+                break
+            j=j+1
+        elif l5[i] == ' ':
+            if l[j] == 'A':
+                l4 , l5 = above(l4, l5, i)
+            elif l[j] == 'B':
+                    print("This puzzle has no final configuration")
+                    break
+            elif l[j] == 'R':
+                if j == 4:
+                    print("This puzzle has no final configuration")
+                    break
+                else:
+                    l5 = right(l5, i)
+                    i = i + 1
+            elif l[j] == 'L':
+                if j == 1:
+                    print("This puzzle has no final configuration")
+                    break
+                else:
+                    l5 = left(l5, i)
+                    i = i - 1
+            elif l[j] == 'O':
+                break
+            j=j+1
+        else:
+            i += 1
+    p=[l1,l2,l3,l4,l5]
+    for m in range(0,5):
+        for n in range(0,5):
+            if n < 4:
+                print(p[m][n],end=" ")
+            else:
+                print(p[m][n])
+    s1=input()
